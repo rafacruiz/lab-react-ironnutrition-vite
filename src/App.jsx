@@ -1,10 +1,14 @@
 import "./App.css";
+import Navbar from "./components/ui/navbar/navbar";
+import StorePage from "./pages/store-page";
 
 function App() {
   return (
-    <div className="App">
-      <h1>LAB | React IronNutrition</h1>
-    </div>
+    <>
+      <Navbar />
+
+      <StorePage />
+    </>
   );
 }
 
