@@ -6,8 +6,19 @@ export const list = () => Promise.resolve([...foods]);
 
 export const remove = (id) => {
     return new Promise((resolve) => {
-        foods = foods.filter((food) => food.id !== id);
-        
+        foods = foods.filter((food) => food.id !== id);    
         resolve();
     }); 
+};
+
+export const create = (food) => {
+    return new Promise((resolve) => {
+        const foodsCreate = {
+            ...food,
+            id: crypto.randomUUID().toString()
+        };
+
+        foods.push(foodsCreate);
+        resolve();
+    });
 };

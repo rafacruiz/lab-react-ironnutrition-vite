@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import * as StoreService from '../../../services/store-service';
+import FoodForm from "../food-form/food-form";
 
-function FoodBox () {
+function FoodBox ({ showForm = true }) {
 
     const [foods, setFoods] = useState();
     const [reload, setReload] = useState(true);
@@ -17,22 +18,28 @@ function FoodBox () {
 
     const handleReload = () => setReload((reload) => !reload);
 
-    console.log(reload);
-
     const handleFoodDelete = async (id) => {
         await StoreService.remove(id);
         handleReload();
     };
+
+    const handleFoodCreate = async (food) => {
+        await StoreService.create(food);
+        handleReload();
+    }
 
     if (!foods) {
         return null;
     } else {
         return (
             <div className="container my-4">
+                
+                {showForm && ( <FoodForm onSubmitForm={handleFoodCreate}/> )}
+
                 <div className="row g-4">
                     {foods.map((food) => (
                         <div className="col-4" key={food.id}>
-                            <div className="card h-100" key={food.id}>
+                             <div className="card h-100" key={food.id}>
                                 <div className="ratio ratio-4x3">
                                     <img src={food.image} className="object-fit-fill" alt={food.name} />
                                 </div>
