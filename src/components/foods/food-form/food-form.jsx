@@ -5,10 +5,12 @@ const validations = {
         required: 'Campo requerido'
     },
     calories: {
-        required: 'Campo requerido'
+        required: 'Campo requerido',
+        min: { value: 1, message: 'Debe ser mayor que 0' },
     },
     servings: {
-        required: 'Campo requerido'
+        required: 'Campo requerido',
+        min: { value: 1, message: 'Debe ser mayor que 0' },
     }
 };
 
